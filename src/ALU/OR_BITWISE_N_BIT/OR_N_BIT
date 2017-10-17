@@ -1,0 +1,36 @@
+#! /usr/local/Cellar/icarus-verilog/10.0/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7f9457406ed0 .scope module, "OR_N_BIT" "OR_N_BIT" 2 1;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 4 "flags_n_z_v_c"
+    .port_info 1 /OUTPUT 4 "out"
+    .port_info 2 /INPUT 4 "in_a"
+    .port_info 3 /INPUT 4 "in_b"
+P_0x7f9457403490 .param/l "size" 0 2 2, +C4<00000000000000000000000000000100>;
+o0x106e970f8 .functor BUFZ 4, C4<zzzz>; HiZ drive
+o0x106e97128 .functor BUFZ 4, C4<zzzz>; HiZ drive
+L_0x7f9457417350 .functor OR 4, o0x106e970f8, o0x106e97128, C4<0000>, C4<0000>;
+L_0x106ec9050 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x7f9457407090_0 .net/2u *"_s12", 0 0, L_0x106ec9050;  1 drivers
+L_0x106ec9098 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x7f9457416e20_0 .net/2u *"_s17", 0 0, L_0x106ec9098;  1 drivers
+L_0x106ec9008 .functor BUFT 1, C4<x>, C4<0>, C4<0>, C4<0>;
+v0x7f9457416ec0_0 .net *"_s4", 0 0, L_0x106ec9008;  1 drivers
+v0x7f9457416f70_0 .net *"_s9", 0 0, L_0x7f9457417440;  1 drivers
+v0x7f9457417010_0 .net "flags_n_z_v_c", 3 0, L_0x7f9457417540;  1 drivers
+v0x7f9457417100_0 .net "in_a", 3 0, o0x106e970f8;  0 drivers
+v0x7f94574171b0_0 .net "in_b", 3 0, o0x106e97128;  0 drivers
+v0x7f9457417260_0 .net "out", 3 0, L_0x7f9457417350;  1 drivers
+L_0x7f9457417440 .reduce/nor L_0x7f9457417350;
+L_0x7f9457417540 .concat8 [ 1 1 1 1], L_0x106ec9098, L_0x106ec9050, L_0x7f9457417440, L_0x106ec9008;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "OR_N_BIT.v";

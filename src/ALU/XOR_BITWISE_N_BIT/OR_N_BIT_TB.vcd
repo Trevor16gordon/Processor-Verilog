@@ -1,0 +1,65 @@
+$date
+	Mon Oct 16 17:19:30 2017
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module XOR_BITWISE_N_BIT_TB $end
+$var wire 8 ! out [7:0] $end
+$var wire 4 " flags_n_z_v_c [3:0] $end
+$var reg 8 # a [7:0] $end
+$var reg 8 $ b [7:0] $end
+$scope module MY_XORER $end
+$var wire 8 % in_a [7:0] $end
+$var wire 8 & in_b [7:0] $end
+$var wire 8 ' out [7:0] $end
+$var wire 4 ( flags_n_z_v_c [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b100 (
+b0 '
+b0 &
+b0 %
+b0 $
+b0 #
+b100 "
+b0 !
+$end
+#1
+b0 "
+b0 (
+b1 !
+b1 '
+b1 #
+b1 %
+#2
+b100 "
+b100 (
+b0 !
+b0 '
+b1 $
+b1 &
+#3
+b0 "
+b0 (
+b111 !
+b111 '
+b100 $
+b100 &
+b11 #
+b11 %
+#4
+b100 "
+b100 (
+b0 !
+b0 '
+b1111 $
+b1111 &
+b1111 #
+b1111 %

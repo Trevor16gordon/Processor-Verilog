@@ -1,0 +1,76 @@
+#! /usr/local/Cellar/icarus-verilog/10.0/bin/vvp
+:ivl_version "10.0 (stable)" "(v10_0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7fe943c05240 .scope module, "LEFT_SHIFTER_N_BIT_TB" "LEFT_SHIFTER_N_BIT_TB" 2 3;
+ .timescale 0 0;
+v0x7fe943c1c830_0 .var "a", 7 0;
+v0x7fe943c1c8c0_0 .net "flags_n_z_v_c", 3 0, L_0x7fe943c1cdf0;  1 drivers
+v0x7fe943c1c950_0 .net "out", 7 0, L_0x7fe943c1cad0;  1 drivers
+v0x7fe943c1ca20_0 .var "shift", 3 0;
+S_0x7fe943c03280 .scope module, "MY_LShift" "LEFT_SHIFTER_N_BIT" 2 30, 3 1 0, S_0x7fe943c05240;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 4 "flags_n_z_v_c"
+    .port_info 1 /OUTPUT 8 "out"
+    .port_info 2 /INPUT 8 "in_a"
+    .port_info 3 /INPUT 4 "shift"
+P_0x7fe943c053a0 .param/l "m" 0 3 3, +C4<00000000000000000000000000000100>;
+P_0x7fe943c053e0 .param/l "size" 0 3 2, +C4<00000000000000000000000000001000>;
+L_0x105c74008 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x7fe943c0c3d0_0 .net/2u *"_s12", 0 0, L_0x105c74008;  1 drivers
+L_0x105c74050 .functor BUFT 1, C4<00000000000000000000000000001000>, C4<0>, C4<0>, C4<0>;
+v0x7fe943c1c020_0 .net/2u *"_s17", 31 0, L_0x105c74050;  1 drivers
+v0x7fe943c1c0c0_0 .net *"_s19", 31 0, L_0x7fe943c1cfb0;  1 drivers
+L_0x105c74098 .functor BUFT 1, C4<0000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x7fe943c1c150_0 .net *"_s22", 27 0, L_0x105c74098;  1 drivers
+v0x7fe943c1c1e0_0 .net *"_s23", 31 0, L_0x7fe943c1d100;  1 drivers
+v0x7fe943c1c2b0_0 .net *"_s26", 0 0, L_0x7fe943c1d240;  1 drivers
+v0x7fe943c1c360_0 .net *"_s5", 0 0, L_0x7fe943c1cc30;  1 drivers
+v0x7fe943c1c410_0 .net *"_s9", 0 0, L_0x7fe943c1ccd0;  1 drivers
+v0x7fe943c1c4b0_0 .net "flags_n_z_v_c", 3 0, L_0x7fe943c1cdf0;  alias, 1 drivers
+v0x7fe943c1c5c0_0 .net "in_a", 7 0, v0x7fe943c1c830_0;  1 drivers
+v0x7fe943c1c670_0 .net "out", 7 0, L_0x7fe943c1cad0;  alias, 1 drivers
+v0x7fe943c1c720_0 .net "shift", 3 0, v0x7fe943c1ca20_0;  1 drivers
+L_0x7fe943c1cad0 .shift/l 8, v0x7fe943c1c830_0, v0x7fe943c1ca20_0;
+L_0x7fe943c1cc30 .part L_0x7fe943c1cad0, 7, 1;
+L_0x7fe943c1ccd0 .reduce/nor L_0x7fe943c1cad0;
+L_0x7fe943c1cdf0 .concat8 [ 1 1 1 1], L_0x7fe943c1d240, L_0x105c74008, L_0x7fe943c1ccd0, L_0x7fe943c1cc30;
+L_0x7fe943c1cfb0 .concat [ 4 28 0 0], v0x7fe943c1ca20_0, L_0x105c74098;
+L_0x7fe943c1d100 .arith/sub 32, L_0x105c74050, L_0x7fe943c1cfb0;
+L_0x7fe943c1d240 .part/v v0x7fe943c1c830_0, L_0x7fe943c1d100, 1;
+    .scope S_0x7fe943c05240;
+T_0 ;
+    %pushi/vec4 240, 0, 8;
+    %store/vec4 v0x7fe943c1c830_0, 0, 8;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0x7fe943c1ca20_0, 0, 4;
+    %delay 1, 0;
+    %pushi/vec4 3, 0, 4;
+    %store/vec4 v0x7fe943c1ca20_0, 0, 4;
+    %delay 1, 0;
+    %pushi/vec4 6, 0, 4;
+    %store/vec4 v0x7fe943c1ca20_0, 0, 4;
+    %end;
+    .thread T_0;
+    .scope S_0x7fe943c05240;
+T_1 ;
+    %vpi_call 2 21 "$monitor", $time, "    shift=%d, a=%b, out=%b, flags_n_z_v_c=%b", v0x7fe943c1ca20_0, v0x7fe943c1c830_0, v0x7fe943c1c950_0, v0x7fe943c1c8c0_0 {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0x7fe943c05240;
+T_2 ;
+    %vpi_call 2 26 "$dumpfile", "OR_N_BIT_TB.vcd" {0 0 0};
+    %vpi_call 2 27 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "LEFT_SHIFTER_N_BIT_TB.v";
+    "./LEFT_SHIFTER_N_BIT.v";
