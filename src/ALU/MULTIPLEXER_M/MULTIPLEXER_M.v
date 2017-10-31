@@ -8,7 +8,7 @@ module MUX_WIDTH_CHAN (
 (
 
     input   [(CHANNELS*WIDTH)-1:0]      in_bus,
-    input   [clogb2(CHANNELS-1)-1:0]    sel,   
+    input   [1<<CHANNELS:0]    sel,   
     output  [WIDTH-1:0]                 out
     );
 

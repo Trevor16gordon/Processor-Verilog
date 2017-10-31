@@ -20,12 +20,13 @@ module ADDER_N_BIT_TB;
 
     initial 
 	    begin
-	      $monitor($time, "    a=%b, b=%b, out=%b, cout=%b", a, b, out, cout);
+	      	if (`DISPLAY_OUTPUT)
+	      		$monitor($time, "    a=%b, b=%b, out=%b, cout=%b", a, b, out, cout);
 	    end
 
 	initial  
 		begin
-		$dumpfile ("ADDER_N_BIT_TB.vcd"); 
+		$dumpfile (`DUMP_FILE); ; 
 		$dumpvars; 
 		end
 

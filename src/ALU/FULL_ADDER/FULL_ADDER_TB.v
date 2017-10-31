@@ -1,9 +1,10 @@
-`include "FULL_ADDER.v"
+`include "../ALU/FULL_ADDER/FULL_ADDER.v"
 
 module FULL_ADDER_TB;
   
 	reg a, b, cin;
 	wire sum, cout;
+
 
   	initial 
 	    begin
@@ -17,12 +18,13 @@ module FULL_ADDER_TB;
 
     initial 
 	    begin
-	      $monitor($time, "    a=%b, b=%b, cin=%b, sum=%b, cout=%b", a, b, cin, sum, cout);
+	    	if (`DISPLAY_OUTPUT)
+	      		$monitor($time, "    a=%b, b=%b, cin=%b, sum=%b, cout=%b", a, b, cin, sum, cout);
 	    end
 
 	initial  
 		begin
-		$dumpfile ("FULL_ADDER.vcd"); 
+		$dumpfile (`DUMP_FILE); 
 		$dumpvars; 
 		end
 

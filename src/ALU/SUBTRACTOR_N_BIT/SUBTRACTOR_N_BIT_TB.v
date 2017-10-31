@@ -18,7 +18,8 @@ module SUBTRACTOR_N_BIT_TB;
 
     initial 
 	    begin
-	      $monitor($time, "    a=%b, b=%b, out=%b, cout=%b, neg=%b", a, b, out, cout, neg);
+	    	if (`DISPLAY_OUTPUT)
+	    		$monitor($time, "    a=%b, b=%b, out=%b, cout=%b, neg=%b", a, b, out, cout, neg);
 	    end
 
 	initial  
