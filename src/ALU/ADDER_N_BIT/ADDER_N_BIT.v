@@ -2,7 +2,7 @@
 `define _ADDER_N_BIT
 
 
-`include "/Users/loreliegordon/Documents/UBCO/UBCO Year 4/ENGR 468 Advanced Digital Systems/Processor Project/src/ALU/FULL_ADDER/FULL_ADDER.v"
+`include "../FULL_ADDER/FULL_ADDER.v"
 
 module ADDER_N_BIT(out, cout, in_a, in_b);
 	parameter size = 4;
