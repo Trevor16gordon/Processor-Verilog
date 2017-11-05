@@ -4,14 +4,15 @@
 
 `include "../FULL_ADDER/FULL_ADDER.v"
 
-module ADDER_N_BIT(out, cout, in_a, in_b);
+module ADDER_N_BIT(out, cout, overflow, in_a, in_b);
 	parameter size = 4;
 	input [size-1:0] in_a, in_b;
 	output[size-1:0] out;
-	output cout;
+	output cout, overflow;
 
 	wire [size:0] carry;
 	assign carry[0] = 0;
+	assign overflow = carry[size]^carry[size-1];
 
 	genvar i;
 	generate

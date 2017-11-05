@@ -1,8 +1,6 @@
-`include "AND_BITWISE_N_BIT.v"
+`include "OR_BITWISE_N_BIT.v"
 
-module AND_BITWISE_N_BIT_TB;
-
-	
+module OR_BITWISE_N_BIT_TB;
 	// Sequence ends when sim_done goes high
 	reg sim_done;
 	integer f;
@@ -18,18 +16,18 @@ module AND_BITWISE_N_BIT_TB;
 			f = $fopen(`SAVEFILE,"w");
 			a = 0;
 			b = 0;
-			#1;
-			#1 a = 1;
-			#1 b = 1;
-			#1 a = 3; b=4;
-			#1 a = 15; b = 15;
-			#1 a = a << 4; b = b << 4;
-			#1;
-			#1;
+			#2;
+			#2 a = 1;
+			#2 b = 1;
+			#2 a = 3; b=4;
+			#2 a = 15; b = 15;
+			#2 a = a << 4;
+			#2;
+			#2;
 			sim_done =1;
 	    end
 
-	always @(*) begin $fwrite(f, "a=%b, b=%b, out= %b\n", a, b, out); #1; end
+	always @(*) begin #1; $fwrite(f, "a=%b, b=%b, out= %b\n", a, b, out); end
 
 
 
@@ -42,6 +40,6 @@ module AND_BITWISE_N_BIT_TB;
 	// End sequenc when sim_done goes high
 	always @(posedge sim_done) begin $fclose(f); $finish();end
 
-	AND_BITWISE_N_BIT #(.size(8)) MY_AND(.out(out), .in_a(a), .in_b(b));
+   OR_BITWISE_N_BIT #(8) MY_ORER(.out(out), .in_a(a), .in_b(b));
 
 endmodule
