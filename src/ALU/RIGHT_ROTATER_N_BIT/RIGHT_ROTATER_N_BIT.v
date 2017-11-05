@@ -1,4 +1,4 @@
-module RIGHT_ROTATER_N_BIT(flags_n_z_v_c, out, in_a, shift);
+module RIGHT_ROTATER_N_BIT(cout, out, in_a, shift);
 	parameter size = 16;
 	parameter m = 4;
 
@@ -6,14 +6,14 @@ module RIGHT_ROTATER_N_BIT(flags_n_z_v_c, out, in_a, shift);
 	input [m-1:0] shift;
 
 	output [size-1:0] out;
-	output [3:0] flags_n_z_v_c; // Negative, Zero, Overflow Carry
+	output cout; 
+
+	wire [size-1:0] out;
+	wire cout; 
 
 
-	assign out = {in_a[m-1:0], in_a[size-1:m]};	
-	assign flags_n_z_v_c[3] = out[size-1]; 	// Negative checks first bit
-	assign flags_n_z_v_c[2] = ~|out;		// Zero Or's all bits
-	assign flags_n_z_v_c[1] = 1'b0;			// Overflow Won't be set for ORing
-	assign flags_n_z_v_c[0] = in_a[m-1];	// Carry is the last one to leave
+	assign out = {in_a[m-1:0], in_a[size-1:m]};	// Shift by m bit needed at compile time
+	assign cout = in_a[m-1];	// Carry is the last one to leave
 
 
 endmodule

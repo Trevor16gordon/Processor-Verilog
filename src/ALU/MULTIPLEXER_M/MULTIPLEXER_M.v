@@ -2,17 +2,21 @@
 // Largely taken from https://alteraforum.com/forum/showthread.php?t=22519
 // Modified by Trevor Gordon
 
-module MUX_WIDTH_CHAN (
-	#parameter  WIDTH           = 32,
-    #parameter  CHANNELS        = 10) 
-(
+module MULTIPLEXER_M (out, sel, in_bus);
+	
+    parameter WIDTH= 8;
+    parameter  CHANNELS= 4;
+    parameter SEL_LENGTH = 2;
 
-    input   [(CHANNELS*WIDTH)-1:0]      in_bus,
-    input   [1<<CHANNELS:0]    sel,   
-    output  [WIDTH-1:0]                 out
-    );
+    input   [(CHANNELS*WIDTH)-1:0]      in_bus;
+    input   [SEL_LENGTH-1:0]    sel;	
+    //input [2:0] sel;
 
-genvar ig;    
+    output  [WIDTH-1:0]                 out;
+ 
+
+genvar ig;
+    
 wire    [WIDTH-1:0] input_array [0:CHANNELS-1];
 
 assign  out = input_array[sel];
@@ -23,18 +27,6 @@ generate
     end
 endgenerate
 
-
-//define the clogb2 function
-// This function will give a num_bits that 
-function integer clogb2;
-  input depth;
-  integer i,result;
-  begin
-    for (i = 0; 2 ** i < depth; i = i + 1)
-      result = i + 1;
-    clogb2 = result;
-  end
-endfunction
 
 endmodule
 

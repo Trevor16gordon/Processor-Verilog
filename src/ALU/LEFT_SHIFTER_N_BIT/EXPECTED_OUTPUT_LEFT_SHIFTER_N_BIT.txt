@@ -1,0 +1,3 @@
+shift= x, a=11110000, out=xxxxxxxx, cout=x
+shift= 1, a=11110000, out=11100000, cout=1
+shift= 3, a=11110000, out=10000000, cout=1
