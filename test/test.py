@@ -50,7 +50,7 @@ class verilogTester(object):
 		fail_test_error = re.search('error', all_errors, re.IGNORECASE)
 
 		if (fail_test_error):
-			self.test_error()
+			self.test_error(test, subtest, all_errors)
 
 		else:
 			#Check if output is as expected
@@ -85,7 +85,7 @@ class verilogTester(object):
 
 		return commands
 
-	def test_error(self, test, subtest):
+	def test_error(self, test, subtest, all_errors):
 	
 		print(util.color_code.WARNING+\
 				all_errors\
@@ -102,7 +102,7 @@ class verilogTester(object):
 		if not (subtest in self.cfg['modules_to_keep_sim_output']):
 			util.silentremove("%s/%s.txt"%(workingdir, subtest))
 
-	def test_failed(self, test):
+	def test_failed(self, test, subtest):
 
 		print(util.color_code.FAIL+\
 					"FAILED TEST \t %s \t %s"%(test, subtest)\

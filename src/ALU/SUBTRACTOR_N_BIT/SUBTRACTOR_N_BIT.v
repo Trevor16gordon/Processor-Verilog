@@ -1,4 +1,4 @@
-`include "../ADDER_N_BIT/ADDER_N_BIT.v"
+`include "/Users/loreliegordon/Documents/UBCO/UBCO Year 4/ENGR 468 Advanced Digital Systems/Processor-Verilog/src/ALU/ADDER_N_BIT/ADDER_N_BIT.v"
 
 module SUBTRACTOR_N_BIT(out, cout, overflow, in_a, in_b);
 	parameter size = 4;
