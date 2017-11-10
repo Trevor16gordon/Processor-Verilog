@@ -13,11 +13,19 @@ config = {
 			'LEFT_SHIFTER_N_BIT': {},
 			'MULTIPLIER_N_BIT': {},
 			'MULTIPLEXER_M': {},
-			}
+			},
+		'RAM':
+		{
+
+		},
+		'ROM':
+		{
+
+		}
 	},
 	'relative_path': '/Users/loreliegordon/Documents/UBCO/UBCO Year 4/ENGR 468 Advanced Digital Systems/',
 	'show_all_output': False,
-	'modules_to_display_output': ['ALU', 'ADDER_N_BIT'],
+	'modules_to_display_output': [],
 	'modules_to_keep_sim_output': [],
 	'modules_to_keep_executable': []
 }
