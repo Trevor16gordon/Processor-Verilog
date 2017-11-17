@@ -11,6 +11,9 @@ module CPU(
 	);
 
 localparam PC = 14; //Special Register Program Counter
+localparam R1 = 1; //Special Register Program Counter
+localparam R2 = 2; //Special Register Program Counter
+localparam R3 = 3; //Special Register Program Counter
 
 
 
@@ -26,6 +29,7 @@ wire [1:0] bits_to_shift;
 reg [15:0] raw_instruction;
 
 
+
 always @ (posedge clk)
 	begin
 		//FETCH ADDRESS FROM Program Counter Loaded into Memory
@@ -37,33 +41,9 @@ always @ (posedge clk)
 		//EXECUTE If the Condition is satisfied, ALU will complete its operation
 		// Conditional eventually but just execute for now
 
-
-
 	end
 
-// Instantiate submodules
-RAM RAM_i (
-	.address(), 
-	.ce(), 
-	.rr(), 
-	.clk(), 
-	.in_data(), 
-	.out_data());
-
 ROM ROM (.address(RAM[PC]), .data(raw_instruction), .ce(1'b1));
-
-
-ALU ALU (
-	.R3      (),// Need to take the 3 bits from source_reg_one and access Reg bank and put 16 bit actual address here
-	.R2      (),
-	.optcode (op_code),
-	.shift   (bits_to_shift),
-	.R1      (),
-	.negative(negative),
-	.zero    (zero),
-	.overflow(overflow),
-	.carry   (carry)
-);
 
 DECODER DECODER (
 	.raw_instruction(raw_instruction),
@@ -76,8 +56,38 @@ DECODER DECODER (
 	.clk(clk)
 );
 
+ALU ALU (
+	.R3      (RAM[source_reg_two]),// Need to take the 3 bits from source_reg_one and access Reg bank and put 16 bit actual address location here
+	.R2      (RAM[source_reg_one]),
+	.optcode (op_code),
+	.shift   (bits_to_shift),
+	.R1      (RAM[dest_reg]),
+	.negative(negative),
+	.zero    (zero),
+	.overflow(overflow),
+	.carry   (carry)
+);
+
+
+
+
+// Instantiate submodules
+RAM RAM_i (
+	.address(), 
+	.ce(), 
+	.rr(), 
+	.clk(), 
+	.in_data(), 
+	.out_data());
+
+
+
+
+
 
 
 
 
 endmodule
+
+
