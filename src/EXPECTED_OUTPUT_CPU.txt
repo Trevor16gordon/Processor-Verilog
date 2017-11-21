@@ -1,0 +1,4 @@
+clk= 0, raw_instruction=xxxxxxxxxxxxxxxx
+clk= 1, raw_instruction=xxxxxxxxxxxxxxxx
+clk= 0, raw_instruction=xxxxxxxxxxxxxxxx
+clk= 1, raw_instructio

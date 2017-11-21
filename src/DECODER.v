@@ -6,6 +6,15 @@
 //////////////////////////////////////////////////////////////////////////////
 
 
+	//    				RAW MESSAGE DECODE
+	//    15 14 13    10 9       7 6       4 3       1  0
+	//   +-----+--------+---------+---------+---------+--+
+	//   | CN  |Op_code | dest_reg| src_reg1| src_reg2|  |
+	//   +-----+--------+---------+---------+---------+--+
+	//									    |    Shift   |
+	//                                      +---------+--+
+
+
 module DECODER(
 	raw_instruction,
 	condition,
@@ -25,22 +34,22 @@ input clk;
 output [1:0] condition;
 output [3:0] op_code;
 output [2:0] dest_reg, source_reg_one, source_reg_two;
-output [1:0] bits_to_shift;
+output [4:0] bits_to_shift;
 
 //Outputs
 reg [1:0] condition;
-reg [2:0] op_code;
+reg [3:0] op_code;
 reg [2:0] dest_reg, source_reg_one, source_reg_two;
-reg [1:0] bits_to_shift;
+reg [4:0] bits_to_shift;
 
 always @ (posedge clk)
 	begin
-	condidtion <= raw_instruction[15:14];
-	op_code <= raw_instruction[13:11];
-	dest_reg <= raw_instruction[10:8];
-	source_reg_one <= raw_instruction[7:5];
-	source_reg_two <= raw_instruction[4:2];
-	bits_to_shift <= raw_instruction[1:0];
+	condition <= raw_instruction[15:14];
+	op_code <= raw_instruction[13:10];
+	dest_reg <= raw_instruction[9:7];
+	source_reg_one <= raw_instruction[6:4];
+	source_reg_two <= raw_instruction[3:1];
+	bits_to_shift <= raw_instruction[3:0];
 	end
 
 endmodule

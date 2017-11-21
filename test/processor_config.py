@@ -18,6 +18,7 @@ config = {
 		{
 
 		},
+		
 		'ROM':
 		{
 
@@ -25,7 +26,7 @@ config = {
 	},
 	'relative_path': '/Users/loreliegordon/Documents/UBCO/UBCO Year 4/ENGR 468 Advanced Digital Systems/',
 	'show_all_output': False,
-	'modules_to_display_output': ['RAM', 'ROM'],
+	'modules_to_display_output': ['ROM', 'CPU', 'RAM'],
 	'modules_to_keep_sim_output': [],
-	'modules_to_keep_executable': []
+	'modules_to_keep_executable': ['CPU']
 }

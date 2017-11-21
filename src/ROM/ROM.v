@@ -22,7 +22,7 @@ assign data = (ce) ? mem[address] : 0;
 
 initial
 	begin
-		$readmemh("data.txt", mem); // read hex
+		$readmemb("data.txt", mem); // read hex
 		//for (i=0; i<mem_length; i=i+1)
 	 	//$display ("data in position %d is %h", i, mem[i]); // read/display the numbers
 	end

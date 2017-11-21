@@ -1,4 +1,5 @@
 import errno
+import os
 import processor_config
 import subprocess as sub
 import re
@@ -16,6 +17,7 @@ class verilogTester(object):
 
 	def run_all_tests(self):
 
+
 		for test, testdict in self.cfg['modules_to_test'].iteritems():
 			for subtest, subtestdict in testdict.iteritems():
 
@@ -25,26 +27,29 @@ class verilogTester(object):
 			mycwd = """%sProcessor-Verilog/src/%s/"""%(self.cfg['relative_path'], test)
 			self.run_one_test(test=test, subtest=test, workingdir=mycwd)
 
+		mycwd = """%sProcessor-Verilog/src/"""%(self.cfg['relative_path'])
+		self.run_one_test(test='CPU', subtest='CPU', workingdir=mycwd)
+
 	def run_one_test(self, test, subtest, workingdir):
 
 		print('-'*90)
 		print("STARTING TEST \t %s \t %s"%(test, subtest))
 
-		commands = self.build_commands_to_run(test, subtest)
+		commands = self.build_commands_to_run(test, subtest, workingdir)
+
+		# print(';'.join(commands))
 
 		all_errors = ''
-		
-		for thiscommand in commands:
-			# print thiscommand
-			p = sub.Popen(thiscommand, shell=True, stdout=sub.PIPE, stderr=sub.PIPE, cwd=workingdir)
-			
-			output, errors = p.communicate()
-			if output:
-				print output
-			if errors:
-				print errors
 
-			all_errors= all_errors+ '\n' + output + errors
+		p = sub.Popen(';'.join(commands), shell=True, stdout=sub.PIPE, stderr=sub.PIPE, cwd=workingdir)
+		
+		output, errors = p.communicate()
+		if output:
+			print output
+		if errors:
+			print errors
+
+		all_errors= all_errors+ '\n' + output + errors
 
 		# Check Errors
 		fail_test_error = re.search('error', all_errors, re.IGNORECASE)
@@ -63,25 +68,37 @@ class verilogTester(object):
 			
 			else:
 				self.test_failed(test, subtest)
-		
+
 		# Remove super ugly executables I don't wanna see
 		if not (subtest in self.cfg['modules_to_keep_executable']):
 			util.silentremove("%s/%s"%(workingdir, subtest))
 			util.silentremove("%s/%s_TB"%(workingdir, subtest))
 
-	def build_commands_to_run(self, test, module_name):
+	def build_commands_to_run(self, test, module_name, workingdir):
 
 		# This assumes that module_name also has a test bench in the same dir callled module_name_tb
 
 		display = (module_name in self.cfg['modules_to_display_output'])
 
-		commands = [
-		"iverilog -DDISPLAY_OUTPUT=%i -o %s %s.v"%(display, module_name, module_name),
-		"iverilog \
-			-DDISPLAY_OUTPUT=%i\
-			-DSAVEFILE=\"\\\"%s.txt\\\"\" -o %s_TB %s_TB.v"%(display, module_name, module_name, module_name), #Double escape quotes but also escape the escape
-		"vvp %s_TB"%module_name
-		]
+
+		if os.path.isfile('%s%s.f'%(workingdir,module_name)):
+			commands = [
+			'export PROJ_PATH=\"%s/Processor-Verilog\"'%(self.cfg['relative_path']),
+			"iverilog -c%s.f -DDISPLAY_OUTPUT=%i -o %s %s.v"%(module_name, display, module_name, module_name),
+			"iverilog \
+				-c%s.f\
+				-DDISPLAY_OUTPUT=%i\
+				-DSAVEFILE=\"\\\"%s.txt\\\"\" -o %s_TB %s_TB.v"%(module_name, display, module_name, module_name, module_name), #Double escape quotes but also escape the escape
+			"vvp %s_TB"%module_name
+			]
+		else:
+			commands = [
+			"iverilog -DDISPLAY_OUTPUT=%i -o %s %s.v"%(display, module_name, module_name),
+			"iverilog \
+				-DDISPLAY_OUTPUT=%i\
+				-DSAVEFILE=\"\\\"%s.txt\\\"\" -o %s_TB %s_TB.v"%(display, module_name, module_name, module_name), #Double escape quotes but also escape the escape
+			"vvp %s_TB"%module_name
+			]
 
 		return commands
 

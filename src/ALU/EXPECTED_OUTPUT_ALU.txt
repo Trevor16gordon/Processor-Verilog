@@ -1,17 +1,34 @@
-                                   Adding	op_code= 0, a=         0, b=         0, shift= x, ans=          0, n=0, z=1, v=0, c=0
-                                   Adding	op_code= 0, a=         5, b=         1, shift= x, ans=          6, n=0, z=0, v=0, c=0
-  Adding - Carry and Negative Should be 1	op_code= 0, a=4294967295, b=4294967295, shift= x, ans= 4294967294, n=1, z=0, v=0, c=1
-            Adding - Overflow Should be 1	op_code= 0, a=2147483647, b=         1, shift= x, ans= 2147483648, n=1, z=0, v=1, c=0
-                                 Subtract	op_code= 1, a=         5, b=         1, shift= x, ans=          4, n=0, z=0, v=0, c=1
-           Subtract - Negative flag is 1 	op_code= 1, a=         1, b=         5, shift= x, ans= 4294967292, n=1, z=0, v=0, c=0
-                                 Multiply	op_code= 2, a=         5, b=         2, shift= x, ans=         10, n=0, z=0, v=0, c=0
-                               Bitwise OR	op_code= 3, a=         5, b=         2, shift= x, ans=          7, n=0, z=0, v=0, c=0
-                              Bitwise AND	op_code= 4, a=         7, b=         5, shift= x, ans=          5, n=0, z=0, v=0, c=0
-                              Bitwise XOR	op_code= 5, a=         7, b=         2, shift= x, ans=          5, n=0, z=0, v=0, c=0
-                              Right Shift	op_code= 6, a=         8, b=         2, shift= 2, ans=          2, n=0, z=0, v=0, c=0
-  Shift - Shift that carry bit to be juan	op_code= 6, a=         3, b=         2, shift= 2, ans=          0, n=0, z=1, v=0, c=1
-                               Left Shift	op_code= 7, a=         8, b=         2, shift= 2, ans=         32, n=0, z=0, v=0, c=0
-           Left Shift - Carry should be 1	op_code= 7, a=1073741824, b=         2, shift= 2, ans=          0, n=0, z=1, v=0, c=1
-                             Right Rotate	op_code= 8, a=         1, b=         2, shift= 5, ans=  134217728, n=0, z=0, v=0, c=0
-         Right Rotate - Carry should be 1	op_code= 8, a=        31, b=         2, shift= 5, ans= 4160749568, n=1, z=0, v=0, c=1
-                           CMP  Zero flag	op_code= 9, a=        11, b=        11, shift= 5, ans=          0, n=0, z=1, v=0, c=1
+	                                   Adding	clk=0, op( 0)	a=    0, b=    0, shift= x, ans= xxxxxxxxxxxxxxxx, n=x, z=x, v=x, c=x
+	                                   Adding	clk=1, op( 0)	a=    0, b=    0, shift= x, ans= 0000000000000000, n=0, z=1, v=0, c=0
+	                                   Adding	clk=0, op( 0)	a=    5, b=    1, shift= x, ans= 0000000000000000, n=0, z=1, v=0, c=0
+	                                   Adding	clk=1, op( 0)	a=    5, b=    1, shift= x, ans= 0000000000000110, n=0, z=0, v=0, c=0
+	  Adding - Carry and Negative Should be 1	clk=0, op( 0)	a=65535, b=65535, shift= x, ans= 0000000000000110, n=0, z=0, v=0, c=0
+	  Adding - Carry and Negative Should be 1	clk=1, op( 0)	a=65535, b=65535, shift= x, ans= 1111111111111110, n=1, z=0, v=0, c=1
+	            Adding - Overflow Should be 1	clk=0, op( 0)	a=32767, b=    1, shift= x, ans= 1111111111111110, n=1, z=0, v=0, c=1
+	            Adding - Overflow Should be 1	clk=1, op( 0)	a=32767, b=    1, shift= x, ans= 1000000000000000, n=1, z=0, v=1, c=0
+	                                 Subtract	clk=0, op( 1)	a=    5, b=    1, shift= x, ans= 1000000000000000, n=1, z=0, v=1, c=0
+	                                 Subtract	clk=1, op( 1)	a=    5, b=    1, shift= x, ans= 0000000000000100, n=0, z=0, v=0, c=1
+	           Subtract - Negative flag is 1 	clk=0, op( 1)	a=    1, b=    5, shift= x, ans= 0000000000000100, n=0, z=0, v=0, c=1
+	           Subtract - Negative flag is 1 	clk=1, op( 1)	a=    1, b=    5, shift= x, ans= 1111111111111100, n=1, z=0, v=0, c=0
+	                                 Multiply	clk=0, op( 2)	a=    5, b=    2, shift= x, ans= 1111111111111100, n=1, z=0, v=0, c=0
+	                                 Multiply	clk=1, op( 2)	a=    5, b=    2, shift= x, ans= 0000000000001010, n=0, z=0, v=0, c=0
+	                               Bitwise OR	clk=0, op( 3)	a=    5, b=    2, shift= x, ans= 0000000000001010, n=0, z=0, v=0, c=0
+	                               Bitwise OR	clk=1, op( 3)	a=    5, b=    2, shift= x, ans= 0000000000000111, n=0, z=0, v=0, c=0
+	                              Bitwise AND	clk=0, op( 4)	a=    7, b=    5, shift= x, ans= 0000000000000111, n=0, z=0, v=0, c=0
+	                              Bitwise AND	clk=1, op( 4)	a=    7, b=    5, shift= x, ans= 0000000000000101, n=0, z=0, v=0, c=0
+	                              Bitwise XOR	clk=0, op( 5)	a=    7, b=    2, shift= x, ans= 0000000000000101, n=0, z=0, v=0, c=0
+	                              Bitwise XOR	clk=1, op( 5)	a=    7, b=    2, shift= x, ans= 0000000000000101, n=0, z=0, v=0, c=0
+	                              Right Shift	clk=0, op( 6)	a=    8, b=    2, shift= 2, ans= 0000000000000101, n=0, z=0, v=0, c=0
+	                              Right Shift	clk=1, op( 6)	a=    8, b=    2, shift= 2, ans= 0000000000000010, n=0, z=0, v=0, c=0
+	  Shift - Shift that carry bit to be juan	clk=0, op( 6)	a=    3, b=    2, shift= 2, ans= 0000000000000010, n=0, z=0, v=0, c=0
+	  Shift - Shift that carry bit to be juan	clk=1, op( 6)	a=    3, b=    2, shift= 2, ans= 0000000000000000, n=0, z=1, v=0, c=1
+	                               Left Shift	clk=0, op( 7)	a=    8, b=    2, shift= 2, ans= 0000000000000000, n=0, z=1, v=0, c=1
+	                               Left Shift	clk=1, op( 7)	a=    8, b=    2, shift= 2, ans= 0000000000100000, n=0, z=0, v=0, c=0
+	           Left Shift - Carry should be 1	clk=0, op( 7)	a=16384, b=    2, shift= 2, ans= 0000000000100000, n=0, z=0, v=0, c=0
+	           Left Shift - Carry should be 1	clk=1, op( 7)	a=16384, b=    2, shift= 2, ans= 0000000000000000, n=0, z=1, v=0, c=1
+	                             Right Rotate	clk=0, op( 8)	a=    1, b=    2, shift= 5, ans= 0000000000000000, n=0, z=1, v=0, c=1
+	                             Right Rotate	clk=1, op( 8)	a=    1, b=    2, shift= 5, ans= 0000100000000000, n=0, z=0, v=0, c=0
+	         Right Rotate - Carry should be 1	clk=0, op( 8)	a=   31, b=    2, shift= 5, ans= 0000100000000000, n=0, z=0, v=0, c=0
+	         Right Rotate - Carry should be 1	clk=1, op( 8)	a=   31, b=    2, shift= 5, ans= 1111100000000000, n=1, z=0, v=0, c=1
+	                           CMP  Zero flag	clk=0, op( 9)	a=   11, b=   11, shift= 5, ans= 1111100000000000, n=1, z=0, v=0, c=1
+	                           CMP  Zero flag	clk=1, op( 9)	a=   11, b=   11, shift= 5, ans= 0000000000000000, n=0, z=1, v=0, c=1
