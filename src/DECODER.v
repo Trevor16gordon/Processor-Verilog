@@ -22,8 +22,7 @@ module DECODER(
 	dest_reg,
 	source_reg_one,
 	source_reg_two,
-	bits_to_shift,
-	clk
+	bits_to_shift
 	);
 
 //Inputs
@@ -42,7 +41,7 @@ reg [3:0] op_code;
 reg [2:0] dest_reg, source_reg_one, source_reg_two;
 reg [4:0] bits_to_shift;
 
-always @ (posedge clk)
+always @ (*)
 	begin
 	condition <= raw_instruction[15:14];
 	op_code <= raw_instruction[13:10];

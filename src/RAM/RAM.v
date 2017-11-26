@@ -45,16 +45,7 @@ always @(posedge clk)
 	out_data_2 = (ce & !rr) ? mem[out_data_2_sel] : {mem_width{1'bz}};
 	end
 
-// Load deafult values into register
-integer i;
-always @(posedge load)
-	for (i=0; i<mem_length; i =i +1)
-	begin
-		if (i == 0)
-			mem[i] = 0;
-		else
-			mem[i] = mem[i-1]+1;
-	end
+
 endmodule
 
 

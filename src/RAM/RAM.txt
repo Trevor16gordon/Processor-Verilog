@@ -1,6 +1,6 @@
 clk=0, rr=0, write_add_1=0, read_add_1=0, read_add_2=7, in_data_1 = aaa0, out_data_1 = xxxx, out_data_2 = xxxx
 clk=0, rr=1, write_add_1=0, read_add_1=0, read_add_2=7, in_data_1 = aaa0, out_data_1 = zzzz, out_data_2 = zzzz
-clk=0, rr=0, write_add_1=0, read_add_1=0, read_add_2=7, in_data_1 = aaa1, out_data_1 = aaa0, out_data_2 = xxxx
+clk=0, rr=0, write_add_1=0, read_add_1=0, read_add_2=7, in_data_1 = aaa1, out_data_1 = aaa0, out_data_2 = 0007
 clk=0, rr=1, write_add_1=1, read_add_1=1, read_add_2=0, in_data_1 = aaa1, out_data_1 = zzzz, out_data_2 = zzzz
 clk=0, rr=0, write_add_1=1, read_add_1=1, read_add_2=0, in_data_1 = aaa2, out_data_1 = aaa1, out_data_2 = aaa0
 clk=0, rr=1, write_add_1=2, read_add_1=2, read_add_2=1, in_data_1 = aaa2, out_data_1 = zzzz, out_data_2 = zzzz
@@ -8,4 +8,4 @@ clk=0, rr=0, write_add_1=2, read_add_1=2, read_add_2=1, in_data_1 = aaa3, out_da
 clk=0, rr=1, write_add_1=3, read_add_1=3, read_add_2=2, in_data_1 = aaa3, out_data_1 = zzzz, out_data_2 = zzzz
 clk=0, rr=0, write_add_1=3, read_add_1=3, read_add_2=2, in_data_1 = aaa4, out_data_1 = aaa3, out_data_2 = aaa2
 clk=0, rr=1, write_add_1=4, read_add_1=4, read_add_2=3, in_data_1 = aaa4, out_data_1 = zzzz, out_data_2 = zzzz
-clk=0, rr=0, write_add_1=4, read_add_1=4, read_add_2=3, in_data_1 = aaa5, out_data_1 = 0004, out_data_2 = 0003
+clk=0, rr=0, write_add_1=4, read_add_1=4, read_add_2=3, in_data_1 = aaa5, out_data_1 = aaa4, out_data_2 = aaa3

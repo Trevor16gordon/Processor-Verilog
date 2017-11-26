@@ -53,6 +53,13 @@ initial
 		#2;
 	end
 
+initial
+	begin
+		$readmemh("RAM_INITIAL.txt", my_ram.mem); // read hex
+		for (i=0; i<8; i=i+1)
+	 	$display ("data in position %d is %b", i, my_ram.mem[i]); // read/display the numbers
+	end
+
 initial 
 	if (`DISPLAY_OUTPUT == 1)
     begin

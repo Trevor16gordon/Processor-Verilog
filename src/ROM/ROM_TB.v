@@ -43,6 +43,13 @@ module ROM_TB;
 	always @(posedge sim_done) begin $fclose(f); $finish();end
 
 
+	initial
+	begin
+		$readmemb("data.txt", my_rom.mem); // read hex
+		//for (i=0; i<mem_length; i=i+1)
+	 	//$display ("data in position %d is %h", i, mem[i]); // read/display the numbers
+	end
+
    ROM my_rom(.ce(ce), .address(address), .data(data));
 
 endmodule

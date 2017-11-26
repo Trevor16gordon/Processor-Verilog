@@ -17,15 +17,6 @@ module CPU(
 	zero,
 	overflow,
 	carry,
-	//Temp Outputs for debugging
-	raw_instruction,
-	current_state,
-	pc,
-	op_code,
-	source_reg_one,
-	dest_reg,
-	ram_in_data_1,
-	ram_out_data_1,
 	);
 
 localparam PC = 14; //Special Register Program Counter
@@ -37,13 +28,6 @@ input clk, rst;
 
 output negative, zero, overflow, carry;
 
-// Temporary outputs for debugging
-output [15:0] raw_instruction;
-output [1:0] current_state;
-output [2:0] pc;
-output [3:0] op_code;
-output [2:0] source_reg_one, dest_reg;
-output [15:0] ram_in_data_1, ram_out_data_1;
 
 // Internal 
 wire [1:0] condition;
@@ -64,7 +48,7 @@ reg ram_chip_enable = 1;
 reg load = 0;
 wire ram_read_write;
 wire [15:0] raw_instruction;
-reg [2:0] pc;
+reg [4:0] pc;
 wire [15:0] ram_in_data_1;
 wire [15:0] ram_out_data_1;
 wire [15:0] ram_out_data_2;
@@ -101,7 +85,7 @@ always @(posedge fetch_clk) begin pc = pc+1; end
 
 
 
-ROM ROM (.address(pc), .data(raw_instruction), .ce(1'b1));
+ROM ROM_i (.address(pc), .data(raw_instruction), .ce(1'b1));
 
 DECODER DECODER (
 	.raw_instruction(raw_instruction),
@@ -110,8 +94,7 @@ DECODER DECODER (
 	.dest_reg       (dest_reg),
 	.source_reg_one (source_reg_one),
 	.source_reg_two (source_reg_two),
-	.bits_to_shift  (bits_to_shift),
-	.clk(dec_clk)
+	.bits_to_shift  (bits_to_shift)
 );
 
 ALU #(.WIDTH()) ALU (
@@ -134,12 +117,14 @@ ALU #(.WIDTH()) ALU (
 RAM RAM_i (
 	.out_data_1_sel(source_reg_one), 
 	.out_data_2_sel(source_reg_two),
+	.in_data_1_sel(dest_reg),
 	.ce(ram_chip_enable), 
 	.rr(ram_read_write), 
 	.in_data_1(ram_in_data_1), 
 	.out_data_1(ram_out_data_1),
 	.out_data_2(ram_out_data_2),
-	.load(load)
+	.load(load),
+	.clk(dec_clk)
 	);
 
 initial 
