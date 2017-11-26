@@ -1,12 +1,14 @@
-# Processor described using Verilog
+# Processor - Verilog
 Trevor Gordon
 4th Year Electrical Engineering Student
 The University of British Columbia
+https://www.linkedin.com/in/trevor-gordon-28667094/
 
 # Description
 
 This project is a simple Processor with 9 ALU operations and conditional execution
 - 16 Bit Instructions
+
 	//    				RAW MESSAGE DECODE
 	//    15 14 13    10 9       7 6       4 3       1  0
 	//   +-----+--------+---------+---------+---------+--+
@@ -22,11 +24,11 @@ against an expected output.
 
 	- Subtest output can be conditionaly shown in terminal for debugging purposed by changing the config file.
 
-	- Simply run test.py
+	- Simply run `test.py`
 
 Here is a screenshot of the project being built and CPU test displayed
 
-![alt text](https://github.com/Trevor16gordon/Processor-Verilog/blob/master/Pictures/ENGR468-Trevor-Verilog-Tester.png)
+![alt text](https://github.com/Trevor16gordon/Processor-Verilog/blob/FSM/Pictures/ENGR468-Trevor-Verilog-Tester.png)
 
 
 # REQUIREMENTS
