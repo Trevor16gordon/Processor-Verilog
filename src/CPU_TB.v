@@ -21,7 +21,7 @@ module CPU_TB;
 
 	initial
 	begin
-		$readmemh("RAM.txt", cpu_i.RAM_i.mem); // read hex
+		$readmemh("register_initial.txt", cpu_i.RAM_i.mem); // read hex
 		// for (i=0; i<9; i=i+1)
 	 	// 	$display ("data in position %d is %b", i, cpu_i.RAM_i.mem[i]); // read/display the numbers
 	end

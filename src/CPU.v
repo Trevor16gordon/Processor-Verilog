@@ -134,11 +134,11 @@ RAM RAM_i (
 	);
 
 CONDITION CONDITION_i (
-	dec_clk,
-	condition,
-	ram_out_data_1,
-	ram_out_data_2,
-	conditional_execute
+	.clk(dec_clk),
+	.ins(condition),
+	.negative(negative),
+	.zero(zero),
+	.out_bool(conditional_execute)
 	);
 
 initial 
