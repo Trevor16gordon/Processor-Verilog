@@ -2,6 +2,7 @@
 `include "ROM/ROM.v"
 `include "ALU/ALU.v"
 `include "DECODER.v"
+`include "CONDITION.v"
 
 // Finite State Machine CPU
 // State = 0 , Fetch New Instruction
@@ -42,10 +43,12 @@ reg [1:0] current_state;
 wire fetch_clk;		//Fetch CLK
 wire dec_clk;		//Decode CLK
 wire alu_clk;		//ALU CLK
+wire ram_clk;		//RAM CLK for read at dec_clk and write and alu_clk
 
 //Internal
 reg ram_chip_enable = 1;
 reg load = 0;
+wire conditional_execute;
 wire ram_read_write;
 wire [15:0] raw_instruction;
 reg [4:0] pc;
@@ -56,8 +59,10 @@ wire [15:0] ram_out_data_2;
 // Ram in write mode when ALU is operational
 assign ram_read_write = (current_state == 2) ? 1 : 0; 
 
+
+
 // This will cycle states 0 1 2 0 1 2
-assign next_state = (current_state == 2) ? 0 : current_state+1;
+assign next_state = ((current_state == 2) | ((current_state == 1)&(~conditional_execute))) ? 0 : current_state+1;
 
 always @ (posedge clk)
 	begin
@@ -65,8 +70,9 @@ always @ (posedge clk)
 	end
 
 assign dec_clk = (current_state==1) 	? 1 : 0; 
-assign alu_clk = (current_state==2) 	? 1 : 0; 
+assign alu_clk = (current_state==2) 	? conditional_execute : 0; 
 assign fetch_clk = (current_state==0) ? 1 : 0; 
+assign ram_clk = clk&(~dec_clk);
 
 always @(posedge rst)
 	begin
@@ -124,7 +130,15 @@ RAM RAM_i (
 	.out_data_1(ram_out_data_1),
 	.out_data_2(ram_out_data_2),
 	.load(load),
-	.clk(dec_clk)
+	.clk(ram_clk)
+	);
+
+CONDITION CONDITION_i (
+	dec_clk,
+	condition,
+	ram_out_data_1,
+	ram_out_data_2,
+	conditional_execute
 	);
 
 initial 
