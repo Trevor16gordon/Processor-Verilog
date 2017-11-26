@@ -1,3 +1,0 @@
-address=1, data = 0000001110010100
-address=3, data = 0000001110010100
-address=5, data = 0000001110010100

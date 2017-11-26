@@ -25,8 +25,7 @@ config = {
 		}
 	},
 	'relative_path': '/Users/loreliegordon/Documents/UBCO/UBCO Year 4/ENGR 468 Advanced Digital Systems/',
-	'show_all_output': False,
-	'modules_to_display_output': ['ALU', 'CPU'],
+	'modules_to_display_output': ['CPU', 'ROM'],
 	'modules_to_keep_sim_output': [],
 	'modules_to_keep_executable': []
 }

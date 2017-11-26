@@ -10,7 +10,7 @@ module ROM_TB;
 	reg[40*8:0] comment;
 
   	reg ce;
-	reg [2:0] address;
+	reg [4:0] address;
 	wire [15:0] data;
 
   	initial 
@@ -45,11 +45,11 @@ module ROM_TB;
 
 	initial
 	begin
-		$readmemb("data.txt", my_rom.mem); // read hex
+		$readmemh("data.txt", my_rom.mem); // read hex
 		//for (i=0; i<mem_length; i=i+1)
 	 	//$display ("data in position %d is %h", i, mem[i]); // read/display the numbers
 	end
 
-   ROM my_rom(.ce(ce), .address(address), .data(data));
+   ROM #(.mem_length(16)) my_rom(.ce(ce), .address(address), .data(data));
 
 endmodule

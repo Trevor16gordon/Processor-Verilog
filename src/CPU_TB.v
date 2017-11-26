@@ -23,14 +23,14 @@ module CPU_TB;
 	begin
 		$readmemh("RAM.txt", cpu_i.RAM_i.mem); // read hex
 		// for (i=0; i<9; i=i+1)
-	 // 	$display ("data in position %d is %b", i, cpu_i.RAM_i.mem[i]); // read/display the numbers
+	 	// 	$display ("data in position %d is %b", i, cpu_i.RAM_i.mem[i]); // read/display the numbers
 	end
 
 	initial
 	begin
 		$readmemb("ROM_INITIAL.txt", cpu_i.ROM_i.mem); // read hex
 		// for (i=0; i<16; i=i+1)
-	 // 	$display ("data in position %d is %b", i, cpu_i.ROM_i.mem[i]); // read/display the numbers
+	 	// 	$display ("data in position %d is %b", i, cpu_i.ROM_i.mem[i]); // read/display the numbers
 	end
 
 	//This is for color coding in terminal output
@@ -144,6 +144,31 @@ module CPU_TB;
 				cpu_i.overflow,
 				cpu_i.carry,
 				COLOR_4,
+				cpu_i.RAM_i.mem[1],
+				cpu_i.RAM_i.mem[2],
+				cpu_i.RAM_i.mem[3]
+				);
+	    end
+
+always @(*) begin 
+	#1 $fwrite(f, "|| FETCH ? %b: %b|| DECODE ? %b: %s%s R%h R%h R%h %d %s %d || EXECUTE ? %b:  ANS = %d NZVC =%b%b%b%b\tR1=%d R2=%d R3=%d\n",
+				cpu_i.fetch_clk,
+				cpu_i.raw_instruction, 
+				cpu_i.dec_clk,
+				OP, 
+				CD_SYM,
+				cpu_i.dest_reg,
+				cpu_i.source_reg_one,
+				cpu_i.source_reg_two,
+				cpu_i.ram_out_data_1,
+				OP_SYM, 
+				second_operand,
+				cpu_i.alu_clk,
+				cpu_i.ram_in_data_1,
+				cpu_i.negative,
+				cpu_i.zero,
+				cpu_i.overflow,
+				cpu_i.carry,
 				cpu_i.RAM_i.mem[1],
 				cpu_i.RAM_i.mem[2],
 				cpu_i.RAM_i.mem[3]
