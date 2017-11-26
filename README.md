@@ -8,7 +8,7 @@ https://www.linkedin.com/in/trevor-gordon-28667094/
 
 This project is a simple Processor with 9 ALU operations and conditional execution
 - 16 Bit Instructions
-
+```verilog
 	//    				RAW MESSAGE DECODE
 	//    15 14 13    10 9       7 6       4 3       1  0
 	//   +-----+--------+---------+---------+---------+--+
@@ -16,8 +16,8 @@ This project is a simple Processor with 9 ALU operations and conditional executi
 	//   +-----+--------+---------+---------+---------+--+
 	//									    |    Shift   |
 	//                                      +---------+--+
-
-- FETCH -> DECODE -> EXECUTE if condiction is satisfied
+```
+- FETCH -> DECODE -> EXECUTE if condiction is satisfied	
 
 - This project includes Python for building the project and running all tests where the output text file is compared
 against an expected output. 
