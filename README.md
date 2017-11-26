@@ -14,9 +14,10 @@ This project is a simple Processor with 9 ALU operations and conditional executi
 	//   +-----+--------+---------+---------+---------+--+
 	//   |COND |Op_code | dest_reg| src_reg1| src_reg2|  |
 	//   +-----+--------+---------+---------+---------+--+
-	//									    |    Shift   |
+	//                                      |    Shift   |
 	//                                      +---------+--+
 ```
+
 - FETCH -> DECODE -> EXECUTE if condiction is satisfied	
 
 - This project includes Python for building the project and running all tests where the output text file is compared
