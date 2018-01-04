@@ -27,7 +27,7 @@ against an expected output.
 
 	- Simply run `test.py`
 
-![alt text](https://github.com/Trevor16gordon/Processor-Verilog/blob/FSM/Pictures/Processor%20Block%20Diagram.png
+![alt text](https://github.com/Trevor16gordon/Processor-Verilog/blob/FSM/Pictures/Processor%20Block%20Diagram.png)
 
 Here is a screenshot of the project being built and CPU test displayed
 
